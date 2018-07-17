@@ -1,0 +1,59 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<canvas id="myChart" width="300" height="200"></canvas>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ["2017/18", "2016/17", "2015/16", "2014/15", "2013/14", "2012/13", "2011/12", "2009/10"],
+        datasets: [{
+            label: 'UK Drone Grant Funding, GBP',
+            data: [2152097,	5451767, 4764463, 3662013, 2047290, 221831, 3654895, 4457780],
+            backgroundColor: [
+                'rgba(165, 148, 130, 0.2)',
+				'rgba(165, 148, 130, 0.2)',
+				'rgba(165, 148, 130, 0.2)',
+                'rgba(165, 148, 130, 0.2)',
+                'rgba(165, 148, 130, 0.2)',
+				'rgba(165, 148, 130, 0.2)',
+                'rgba(165, 148, 130, 0.2)',
+                'rgba(165, 148, 130, 0.2)'
+            ],
+            borderColor: [
+                'rgba(165, 148, 130, 1)',
+				'rgba(165, 148, 130, 1)',
+				'rgba(165, 148, 130, 1)',
+                'rgba(165, 148, 130, 1)',
+                'rgba(165, 148, 130, 1)',
+				'rgba(165, 148, 130, 1)',
+                'rgba(165, 148, 130, 1)',
+                'rgba(165, 148, 130, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+		responsive: true,
+		tooltips: {
+          callbacks: {
+                label: function(tooltipItem, data) {
+                    var value = data.datasets[0].data[tooltipItem.index];
+                    if(parseInt(value) >= 1000){
+                               return '£' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            } else {
+                               return '£' + value;
+                            }
+                }
+          } // end callbacks:
+        }, //end tooltips 
+		scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
